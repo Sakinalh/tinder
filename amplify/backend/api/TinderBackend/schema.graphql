@@ -1,0 +1,25 @@
+type Matches @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  UserOne: [User] @hasMany(indexName: "byMatches", fields: ["id"])
+  UsersTwo: [User] @hasMany(indexName: "byMatches", fields: ["id"])
+  userIdOne: String
+  userIdTwo: String
+  isMatch: Boolean
+}
+
+enum GENDERS {
+  MALE
+  FEMALE
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  image: String!
+  bio: String!
+  gender: GENDERS!
+  lookingFor: GENDERS!
+  sub: String!
+  matchesID: ID @index(name: "byMatches")
+}
+ 

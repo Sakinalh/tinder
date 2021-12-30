@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text, useWindowDimensions, Image} from 'react-native';
-import {
-  GestureHandlerRootView,
-  PanGestureHandler,
-} from 'react-native-gesture-handler';
+import {StyleSheet, View, Text, useWindowDimensions} from 'react-native';
+import {PanGestureHandler} from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -12,7 +9,6 @@ import Animated, {
   useDerivedValue,
   interpolate,
   runOnJS,
-  RotateOutDownRight,
 } from 'react-native-reanimated';
 import Like from '../../../assets/images/LIKE.png';
 import nope from '../../../assets/images/nope.png';
@@ -75,33 +71,41 @@ const AnimatedStack = props => {
     opacity: interpolate(translateX.value, [-hiddenTranslateX / 5, 6], [1, 0]),
   }));
 
-  const gestureHandler = useAnimatedGestureHandler({
-    onStart: (_, context) => {
-      //use gesture context
-      context.startX = translateX.value;
-      console.warn('Touche start');
-    },
-    onActive: (event, context) => {
-      //context.startX = event.translationX;
-      translateX.value = context.startX + event.translationX;
-    },
-    onEnd: (event, context) => {
-      // context.startX = event.translationX;
-      if (Math.abs(event.velocityX) < SWIPE_VELOCITY) {
-        translateX.value = withSpring(0);
-        return;
-      }
+  const letsSwipe = event => {
+    const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft;
 
-      translateX.value = withSpring(
-        hiddenTranslateX * Math.sign(event.velocityX),
-        {},
-        () => runOnJS(setCurrentIndex)(currentIndex + 1),
-      );
+    onSwipe(currentProfile);
+  };
 
-      const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft;
-      onSwipe && runOnJS(onSwipe)(currentProfile);
+  const gestureHandler = useAnimatedGestureHandler(
+    {
+      onStart: (_, context) => {
+        //use gesture context
+        context.startX = translateX.value;
+        console.warn('Touche start');
+      },
+      onActive: (event, context) => {
+        //context.startX = event.translationX;
+        translateX.value = context.startX + event.translationX;
+      },
+      onEnd: (event, context) => {
+        // context.startX = event.translationX;
+        if (Math.abs(event.velocityX) < SWIPE_VELOCITY) {
+          translateX.value = withSpring(0);
+          return;
+        }
+
+        translateX.value = withSpring(
+          hiddenTranslateX * Math.sign(event.velocityX),
+          {},
+          () => runOnJS(setCurrentIndex)(currentIndex + 1),
+        );
+
+        runOnJS(letsSwipe)(event);
+      },
     },
-  });
+    [currentProfile],
+  );
 
   useEffect(() => {
     translateX.value = 0;
@@ -117,7 +121,7 @@ const AnimatedStack = props => {
           </Animated.View>
         </View>
       )}
-      {currentProfile && (
+      {currentProfile ? (
         <PanGestureHandler onGestureEvent={gestureHandler}>
           <Animated.View style={[styles.animatedCard, cardStyle]}>
             <Animated.Image
@@ -135,6 +139,8 @@ const AnimatedStack = props => {
             {renderItem({item: currentProfile})}
           </Animated.View>
         </PanGestureHandler>
+      ) : (
+        <Text>OOoops, No more users</Text>
       )}
     </View>
   );

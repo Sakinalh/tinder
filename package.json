@@ -10,10 +10,25 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.14",
+    "@react-native-community/netinfo": "^7.1.7",
+    "@react-native-picker/picker": "^2.2.1",
+    "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/material-top-tabs": "^6.0.6",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
+    "amazon-cognito-identity-js": "^5.2.3",
+    "aws-amplify": "^4.3.11",
+    "aws-amplify-react-native": "^6.0.2",
     "react": "17.0.2",
     "react-native": "0.66.4",
     "react-native-gesture-handler": "^2.1.0",
-    "react-native-reanimated": "^2.3.1"
+    "react-native-pager-view": "^6.0.0-rc.0",
+    "react-native-reanimated": "^2.3.1",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.10.1",
+    "react-native-tab-view": "^3.1.1",
+    "react-native-vector-icons": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
