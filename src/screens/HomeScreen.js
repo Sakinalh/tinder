@@ -1,13 +1,10 @@
-import React, {useState, useEffect, useLayoutEffect, useRef} from 'react';
-import {StyleSheet, View, SafeAreaView, Pressable, Text} from 'react-native';
+import React, {useState, useEffect, useRef} from 'react';
+import {StyleSheet, View, SafeAreaView, Text} from 'react-native';
 import Card from '../components/TinderCard';
-//import users from '../../assets/data/users';
 import AnimatedStack from '../components/AnimatedStack';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
-import Fontisto from 'react-native-vector-icons/Fontisto';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {DataStore} from '@aws-amplify/datastore';
 import {User, Matches} from '../models/';
 import {Auth} from 'aws-amplify';
@@ -47,7 +44,6 @@ export default function HomeScreen({navigation}) {
       _users.forEach((user, index) => {
         console.log(`INDEX ${index} `, user);
       });
-
     };
 
     fetchUsers();
@@ -69,7 +65,6 @@ export default function HomeScreen({navigation}) {
     console.warn('swipe left');
   };
   const onSwipeRight = async _currentProfile => {
-
     if (!_currentProfile || !me) {
       return;
     }
@@ -99,7 +94,6 @@ export default function HomeScreen({navigation}) {
       return;
     }
 
-    console.warn('Sending him a match request');
     DataStore.save(
       new Matches({
         userIdOne: me?.id,
