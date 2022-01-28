@@ -46,8 +46,10 @@ export default function HomeScreen({navigation}) {
       });
     };
 
-    fetchUsers();
-  }, [me]);
+    if (!users) {
+      fetchUsers();
+    }
+  });
 
   const onSwipeLeft = async () => {
     if (!me) {

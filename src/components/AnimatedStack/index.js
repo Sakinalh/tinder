@@ -20,7 +20,7 @@ const AnimatedStack = props => {
   const {data, renderItem, onSwipeLeft, onSwipeRight} = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(currentIndex + 1);
-
+  console.log('data', data);
   const currentProfile = data[currentIndex];
   const nextProfile = data[nextIndex];
 

@@ -145,7 +145,6 @@
 				37A8ACE07B182C24E90FB4B6 /* Pods-tinderFromScratch-tinderFromScratchTests.debug.xcconfig */,
 				E10CD88AFD29F2A78A81A503 /* Pods-tinderFromScratch-tinderFromScratchTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -485,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MTFTW72KDK;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = tinderFromScratch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -511,6 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MTFTW72KDK;
 				INFOPLIST_FILE = tinderFromScratch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
